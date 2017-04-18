@@ -12,6 +12,7 @@ public class Labyrint{
     private Rute[][] labyrint;
     private int rader;
     private int kolonner;
+    private Stabel<String> utveier;
 
     static Labyrint lesFraFil(File fil) throws FileNotFoundException{
         int rader;
@@ -33,6 +34,7 @@ public class Labyrint{
     private Labyrint(int rader, int kolonner, char[][] lab){
         this.rader = rader;
         this.kolonner = kolonner;
+        this.utveier = new Stabel<String>();
         labyrint = new Rute[rader][kolonner];
         for (int i=0; i<rader; i++){
             for (int j = 0; j< kolonner; j++){
@@ -51,6 +53,11 @@ public class Labyrint{
 
             }
         }
+        for (Rute[] r1: labyrint){
+            for (Rute r: r1){
+                r.omegnInitialisering();
+            }
+        }
     }
     public int getRader(){
         return rader;
@@ -66,6 +73,19 @@ public class Labyrint{
         }
         return labyrint[rad][kolonne];
     }
+
+    public Stabel<String> finnUtveiFra(int kol, int rad){
+        utveier = new Stabel<String>();
+        labyrint[kol-1][rad-1].finnUtvei();
+        return utveier;
+    }
+
+    public void leggTilUtvei(String utvei){
+        utveier.settInn(utvei);
+
+    }
+
+    public void settMinimalUtskrift(){}
 
     public String toString(){
         String out = new String("");
