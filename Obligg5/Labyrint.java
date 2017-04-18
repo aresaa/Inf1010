@@ -74,9 +74,27 @@ public class Labyrint{
         return labyrint[rad][kolonne];
     }
 
-    public Stabel<String> finnUtveiFra(int kol, int rad){
+    public String kortesteUtveiFra(int kol, int rad){
+        Stabel<String> mellomLagredeUtveier = finnUtveiFra(kol, rad);
+        if (mellomLagredeUtveier.storrelse() == 0){
+        return "Fant ingen utveier";
+        }
+        else{
+            OrdnetLenkeliste<Utvei> sortertUtvei = new OrdnetLenkeliste<Utvei>();
+            for (String utvei: mellomLagredeUtveier){
+            sortertUtvei.settInn(new Utvei(utvei));
+            }
+            int antallUtveier = sortertUtvei.storrelse();
+            String kortesteUtvei = "Korteste utvei funnet:\n" + sortertUtvei.fjern().toString();
+            return kortesteUtvei + "\nAntall utveier:" + antallUtveier;
+        }
+
+    }
+
+
+    public Stabel<String> finnUtveiFra(int kolonne, int rad){
         utveier = new Stabel<String>();
-        labyrint[kol-1][rad-1].finnUtvei();
+        labyrint[rad-1][kolonne-1].finnUtvei();
         return utveier;
     }
 

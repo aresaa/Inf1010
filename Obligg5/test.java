@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 public class test{
     public static void main(String[] args) {
-        File fil = new File("4.in");
+        File fil = new File("5.in");
         int rader;
         int kolonner;
         char[][] line = null;
@@ -30,11 +30,11 @@ public class test{
         try{
             Labyrint test = Labyrint.lesFraFil(fil);
             System.out.println(test);
-            Stabel<String> utveier =  test.finnUtveiFra(10, 10);
-            for (String c: utveier){
-                System.out.println(c);
-            }
-    //        System.out.print(utveier[0]);
+//            Stabel<String> utveier =  test.finnUtveiFra(10, 10);
+//            for (String c: utveier){
+//                System.out.println(c);
+//            }
+//    /        System.out.print(utveier[0]);
 
         }
         catch(FileNotFoundException e){

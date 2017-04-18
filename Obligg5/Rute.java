@@ -1,12 +1,9 @@
 public abstract class Rute{
-    int rad;
-    int kolonne;
-    Rute[] omegn = new Rute[4]; //array for nord/syd/vest/oest, i den rekkefoelgen
-    Rute syd;
-    Rute vest;
-    Rute oest;
-    Labyrint lab;
-    boolean paaVeien = false;
+    private int rad;
+    private int kolonne;
+    private Rute[] omegn = new Rute[4]; //array for nord/syd/vest/oest, i den rekkefoelgen
+    private Labyrint lab;
+    private boolean paaVeien = false;
 
     Rute(int rad, int kolonne, Labyrint lab){
         this.rad = rad;
@@ -14,7 +11,7 @@ public abstract class Rute{
         this.lab = lab;
     }
 
-    void omegnInitialisering(){
+    public void omegnInitialisering(){
         omegn[0] = lab.getRute(rad-2, kolonne-1);   //nord
         omegn[1] = lab.getRute(rad, kolonne-1);     //syd
         omegn[2] = lab.getRute(rad-1, kolonne-2);  //vest
@@ -34,7 +31,7 @@ public abstract class Rute{
             }
             else{
                 paaVeien = true;
-                sti += "("+kolonne+","+rad+") -> ";
+                sti += "("+kolonne+","+rad+") --> ";
     //            System.out.println(sti);
                 for (Rute r: omegn){
                 //    System.out.println(r);
